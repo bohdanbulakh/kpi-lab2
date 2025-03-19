@@ -1,4 +1,2 @@
-Шаблон для 2-гої роботи з архітектури ПЗ
----
-
-Використайте кнопку **"Use this template"**, щоб створити власний репозиторій.
+## Laboratory work 2
+Components of Programming Engineering
