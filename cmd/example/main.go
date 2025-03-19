@@ -36,13 +36,25 @@ func main() {
 	}
 
 	if *inputFile != "" {
-		file, _ := os.OpenFile(filepath.Join(".", *inputFile), os.O_RDONLY, 0644)
+		file, err := os.OpenFile(filepath.Join(".", *inputFile), os.O_RDONLY, 0644)
 		defer file.Close()
+
+		if err != nil {
+			_, _ = os.Stderr.WriteString(err.Error() + "\n")
+			os.Exit(1)
+		}
+
 		reader = file
 	}
 
 	if *outputFile != "" {
-		writer, _ = os.Create(filepath.Join(".", *outputFile))
+		var err error
+		writer, err = os.Create(filepath.Join(".", *outputFile))
+
+		if err != nil {
+			_, _ = os.Stderr.WriteString(err.Error() + "\n")
+			os.Exit(1)
+		}
 	} else {
 		writer = os.Stdout
 	}
@@ -54,6 +66,7 @@ func main() {
 
 	err := handler.Compute()
 	if err != nil {
+		_, _ = os.Stderr.WriteString(err.Error() + "\n")
 		os.Exit(1)
 	}
 }
