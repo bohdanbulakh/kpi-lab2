@@ -1,7 +1,6 @@
 package lab2
 
 import (
-	"errors"
 	"io"
 )
 
@@ -11,7 +10,6 @@ type ComputeHandler struct {
 }
 
 func (ch *ComputeHandler) Compute() error {
-	return errors.New("Some important error")
 	data, err := io.ReadAll(ch.Input)
 	if err != nil {
 		return err
