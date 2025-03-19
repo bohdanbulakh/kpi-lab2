@@ -1,7 +1,6 @@
 package lab2
 
 import (
-	"errors"
 	"fmt"
 	"strings"
 	"unicode"
@@ -9,7 +8,7 @@ import (
 
 func ParsePrefixToLisp(input string) (string, error) {
 	if strings.TrimSpace(input) == "" {
-		return "", errors.New("empty input")
+		return "", fmt.Errorf("empty input")
 	}
 
 	tokens := strings.Fields(input)
